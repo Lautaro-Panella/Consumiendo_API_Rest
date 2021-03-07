@@ -8,11 +8,14 @@
         <title>Consumir API Rest</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     </head>
-    <body style="background-color: grey">
+    <body style="background-color: #EDEDED">
         <nav class="navbar navbar-dark bg-dark">
             <div class="container">
                 <a href="#" class="navbar-brand">SISTEMA DE USUARIOS/DIRECCIONES - CONSUMIENDO API Rest</a>
             </div>
+            <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="index.php">Ir a Usuarios</a>
+            </li>
         </nav>
         <div class="container p-3">
             <div class="row">
@@ -93,7 +96,7 @@
                     </div>
                 </div>      
                 <div class="col-md-8">
-                    <table class="table table-sm table-bordered">
+                    <table class="table table-sm table-striped table-hover">
                         <thead>
                         <th>#</th><th>Calle</th><th>Número</th><th>Localidad</th><th>Ciudad</th><th>País</th><th>Tipo</th><th>Usuario</th><th style="width: 12px">Acción</th>
                         </thead>
