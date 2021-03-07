@@ -1,5 +1,6 @@
 <?php
-function hacerPeticionHTTP ($url, $metodo, $arreglo) {
+
+function hacerPeticionHTTPUsuario ($url, $metodo, $arreglo) {
     
     $curl = curl_init();
     $header = array('Content-Type: application/json');
@@ -27,42 +28,42 @@ function hacerPeticionHTTP ($url, $metodo, $arreglo) {
 if (isset($_POST['getUsuarios'])) {
     $url = "http://localhost:8080/usuario";
     $metodo = "GET";
-    $respuesta = hacerPeticionHTTP($url, $metodo, null);
+    $respuesta = hacerPeticionHTTPUsuario($url, $metodo, null);
     $datos = json_decode($respuesta, true);
 }
 if (isset($_POST['getUsuarioPorId'])) {
     $id = $_POST['idUsuario'];
     $url = "http://localhost:8080/usuario/".$id;
     $metodo = "GET";
-    $respuesta = hacerPeticionHTTP($url, $metodo, null);
+    $respuesta = hacerPeticionHTTPUsuario($url, $metodo, null);
     $datos = json_decode($respuesta, true);
 }
-if (isset($_POST['getUsuarioPorNombre'])) {
+if (isset($_POST['getUsuariosPorNombre'])) {
     $nombre = $_POST['nameUsuario'];
     $url = "http://localhost:8080/usuario/consulta?nombre=".$nombre;
     $metodo = "GET";
-    $respuesta = hacerPeticionHTTP($url, $metodo, null);
+    $respuesta = hacerPeticionHTTPUsuario($url, $metodo, null);
     $datos = json_decode($respuesta, true);
 }
 if (isset($_POST['saveUsuario'])) {
     $url = "http://localhost:8080/usuario";
     $metodo = "POST";
     $postData = array("nombre" => $_POST['nombreUsuario'], "apellido" => $_POST['apellidoUsuario'], "email" => $_POST['emailUsuario']);
-    $respuesta = hacerPeticionHTTP($url, $metodo, $postData);
+    $respuesta = hacerPeticionHTTPUsuario($url, $metodo, $postData);
     $datos = json_decode($respuesta, true);
 }
 if (isset($_POST['updateUsuario'])) {
     $url = "http://localhost:8080/usuario";
     $metodo = "PUT";
     $postData = array("id" => $_POST['numeroUsuario'], "nombre" => $_POST['nombreUsuario'], "apellido" => $_POST['apellidoUsuario'], "email" => $_POST['emailUsuario']);
-    $respuesta = hacerPeticionHTTP($url, $metodo, $postData);
+    $respuesta = hacerPeticionHTTPUsuario($url, $metodo, $postData);
     $datos = json_decode($respuesta, true);
 }
 if (isset($_POST['deleteUsuarioPorId'])) {
     $id = $_POST['idOculto'];
     $url = "http://localhost:8080/usuario/".$id;
     $metodo = "DELETE";
-    $respuesta = hacerPeticionHTTP($url, $metodo, null);
+    $respuesta = hacerPeticionHTTPUsuario($url, $metodo, null);
 }
 
 

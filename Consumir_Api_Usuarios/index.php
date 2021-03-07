@@ -1,4 +1,4 @@
-<?php include 'gestor.php';?>
+<?php include 'gestorUsuario.php';?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -34,7 +34,7 @@
                     <form action="" method="POST">
                         <div class="input-group">
                             <input type="text" name="nameUsuario" id="button-addon2" class="form-control1" placeholder="Consultar por Nombre" required/>
-                            <button type="submit" name="getUsuarioPorNombre" aria-describedby="button-addon2" class="btn btn-success btn-block"><i class="far fa-paper-plane"></i></button>
+                            <button type="submit" name="getUsuariosPorNombre" aria-describedby="button-addon2" class="btn btn-success btn-block"><i class="far fa-paper-plane"></i></button>
                         </div>
                     </form>
                 </div>
@@ -67,52 +67,63 @@
                 <div class="col-md-8">
                     <table class="table table-sm table-bordered">
                         <thead>
-                        <th>#</th><th>Nombre</th><th>Apellido</th><th>Email</th><th style="width: 12px">Acción</th>
+                        <th>#</th><th>Nombre</th><th>Apellido</th><th>Email</th><th style="width: 16px">Dirección</th><th style="width: 12px">Acción</th>
                         </thead>
                         <tbody><?php
                                 if (isset($_POST['getUsuarios'])) {
                                     for ($i = 0; $i < count($datos); $i ++) {
                                         echo "<tr><td>".$datos[$i]['id']."</td><td>".$datos[$i]['nombre']."</td><td>".$datos[$i]['apellido']."</td><td>".$datos[$i]['email']."</td>"
+                                            ."<td><form action='direcciones.php' method='POST'><button type='submit' name='getDireccionesPorIdUsuario' class='btn btn-success btn-block'><i class='far fa-address-card'></i></button>&nbsp;"
+                                            ."<input type='hidden' name='idOculto' value='".$datos[$i]['id']."'/></td></form>"
                                             ."<td><form action='' method='POST'><button type='submit' name='deleteUsuarioPorId' class='btn btn-danger btn-block' onclick='confirmar()'><i class='far fa-trash-alt'></i></button>&nbsp;"
                                             ."<input type='hidden' name='idOculto' value='".$datos[$i]['id']."'/></td></form>"
-                                            . "</tr>";
+                                            ."</tr>";
                                     } 
                                 }
                                 if (isset($_POST['getUsuarioPorId'])) {
                                     if($datos == NULL) {
-                                        echo "<tr><td colspan='5'>No se encontró el usuario con id: ".$_POST['idUsuario']."</td></tr>";
+                                        echo "<tr><td colspan='6'>No se encontró el usuario con id: ".$_POST['idUsuario']."</td></tr>";
                                     } else {
                                         echo "<tr><td>".$datos['id']."</td><td>".$datos['nombre']."</td><td>".$datos['apellido']."</td><td>".$datos['email']."</td>"
+                                            ."<td><form action='direcciones.php' method='POST'><button type='submit' name='getDireccionesPorIdUsuario' class='btn btn-success btn-block'><i class='far fa-address-card'></i></button>&nbsp;"
+                                            ."<input type='hidden' name='idOculto' value='".$datos['id']."'/></td></form>"
                                             ."<td><form action='' method='POST'><button type='submit' name='deleteUsuarioPorId' class='btn btn-danger btn-block' onclick='confirmar()'><i class='far fa-trash-alt'></i></button>&nbsp;"
                                             ."<input type='hidden' name='idOculto' value='".$datos['id']."'/></td></form>"
-                                            . "</tr>";
+                                            ."</tr>";
                                     }
                                 } 
-                                if (isset($_POST['getUsuarioPorNombre'])) {
+                                if (isset($_POST['getUsuariosPorNombre'])) {
                                     if($datos == NULL) {
-                                        echo "<tr><td colspan='5'>No se encontraron usuarios con nombre: ".$_POST['nameUsuario']."</td></tr>";
+                                        echo "<tr><td colspan='6'>No se encontraron usuarios con nombre: ".$_POST['nameUsuario']."</td></tr>";
                                     } else {
                                         for ($i = 0; $i < count($datos); $i ++) {
                                             echo "<tr><td>".$datos[$i]['id']."</td><td>".$datos[$i]['nombre']."</td><td>".$datos[$i]['apellido']."</td><td>".$datos[$i]['email']."</td>"
+                                                ."<td><form action='direcciones.php' method='POST'><button type='submit' name='getDireccionesPorIdUsuario' class='btn btn-success btn-block'><i class='far fa-address-card'></i></button>&nbsp;"
+                                                ."<input type='hidden' name='idOculto' value='".$datos[$i]['id']."'/></td></form>"
                                                 ."<td><form action='' method='POST'><button type='submit' name='deleteUsuarioPorId' class='btn btn-danger btn-block' onclick='confirmar()'><i class='far fa-trash-alt'></i></button>&nbsp;"
                                                 ."<input type='hidden' name='idOculto' value='".$datos[$i]['id']."'/></td></form>"
-                                                . "</tr>";
+                                                ."</tr>";
                                         }
                                     }
                                 }
                                 if (isset($_POST['saveUsuario'])) {
                                     echo "<tr><td>".$datos['id']."</td><td>".$datos['nombre']."</td><td>".$datos['apellido']."</td><td>".$datos['email']."</td>"
+                                        ."<td><form action='direcciones.php' method='POST'><button type='submit' name='getDireccionesPorIdUsuario' class='btn btn-success btn-block'><i class='far fa-address-card'></i></button>&nbsp;"
+                                        ."<input type='hidden' name='idOculto' value='".$datos['id']."'/></td></form>"
                                         ."<td><form action='' method='POST'><button type='submit' name='deleteUsuarioPorId' class='btn btn-danger btn-block' onclick='confirmar()'><i class='far fa-trash-alt'></i></button>&nbsp;"
                                         ."<input type='hidden' name='idOculto' value='".$datos['id']."'/></td></form>"
-                                        . "</tr>";
+                                        ."</tr>";
                                 }
                                 if (isset($_POST['updateUsuario'])) {
                                     echo "<tr><td>".$datos['id']."</td><td>".$datos['nombre']."</td><td>".$datos['apellido']."</td><td>".$datos['email']."</td>"
+                                        ."<td><form action='direcciones.php' method='POST'><button type='submit' name='getDireccionesPorIdUsuario' class='btn btn-success btn-block'><i class='far fa-address-card'></i></button>&nbsp;"
+                                        ."<input type='hidden' name='idOculto' value='".$datos['id']."'/></td></form>"
                                         ."<td><form action='' method='POST'><button type='submit' name='deleteUsuarioPorId' class='btn btn-danger btn-block' onclick='confirmar()'><i class='far fa-trash-alt'></i></button>&nbsp;"
-                                        . "</tr>";
+                                        ."<input type='hidden' name='idOculto' value='".$datos['id']."'/></td></form>"
+                                        ."</tr>";
                                 }
                                 if (isset($_POST['deleteUsuarioPorId'])) {
-                                    echo "<tr><td colspan='5'>".$respuesta."</td></tr>";
+                                    echo "<tr><td colspan='6'>".$respuesta."</td></tr>";
                                 }
                         ?></tbody>        
                     </div> 
